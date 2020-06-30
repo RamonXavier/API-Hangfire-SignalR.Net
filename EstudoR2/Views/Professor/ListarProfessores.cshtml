@@ -1,0 +1,28 @@
+﻿@model List<EstudoR2.Models.Professor>
+@{
+    ViewBag.Title = "ListarProfessores";
+}
+
+<h2>Listar Professores</h2>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <td>Nome</td>
+            <td>Id</td>
+            <td></td>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var prof in Model)
+        {
+            <tr>
+                <td>@prof.NomeProfessor</td>
+                <td>@prof.IdProfessor</td>
+                <td>@Html.ActionLink("Apagar", "ApagaProfessor", "Professor", new { idProfessor = prof.IdProfessor }, new {@class="btn-warning btn"})</td>
+                <td>@Html.ActionLink("Editar", "EditarProfessor", "Professor", new { idProfessor = prof.IdProfessor }, new { @class = "btn-primary btn" })</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+<a href="@Url.Action("Index", "Professor")">Inserir novo Professor</a>
