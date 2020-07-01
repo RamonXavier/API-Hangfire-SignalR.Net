@@ -195,6 +195,7 @@
     <Compile Include="Context\R2Context.cs" />
     <Compile Include="Controllers\CursoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ModuloController.cs" />
     <Compile Include="Controllers\ProfessorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -257,6 +258,7 @@
     <Content Include="Views\Curso\ListarCursos.cshtml" />
     <Content Include="Views\Curso\InserirCurso.cshtml" />
     <Content Include="Views\Curso\EditarCurso.cshtml" />
+    <Content Include="Views\Modulo\ListarModulo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
