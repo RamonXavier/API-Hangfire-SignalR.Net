@@ -7,6 +7,7 @@ using System.Web;
 
 namespace EstudoR2.Models
 {
+
     [Table("t_turmas")]
     public class Turma
     {

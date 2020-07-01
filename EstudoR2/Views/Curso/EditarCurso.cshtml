@@ -1,0 +1,20 @@
+﻿@model EstudoR2.Models.Curso
+
+@{
+    ViewBag.Title = "EditarCurso";
+}
+
+<h2>EditarCurso</h2>
+
+@using (Html.BeginForm("Editar", "Curso", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.Label("NomeCurso", "Nome do Curso")
+        @Html.TextBox("nomeCurso", Model.NomeCurso, null, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label("idCruso", "Código do Curso")
+        @Html.TextBox("idCurso", Model.IdCurso, null, new { @class = "form-control", @readonly = true })
+    </div>
+    <button class="btn btn-success">Salvar Edição</button>
+}

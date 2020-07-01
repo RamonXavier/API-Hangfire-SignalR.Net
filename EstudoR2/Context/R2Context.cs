@@ -14,14 +14,14 @@ namespace EstudoR2.Context
         {
         }
 
-        private DbSet<Aluno> Alunos { get; set; }
-        private DbSet<Atividade> Atividades { get; set; }
-        private DbSet<Curso> Cursos { get; set; }
-        private DbSet<Materia> Materias { get; set; }
-        private DbSet<Modulo> Modulos{ get; set; }
-        private DbSet<Nota> Notas { get; set; }
-        private DbSet<Presenca> Presencas{ get; set; }
-        private DbSet<Professor> Professores{ get; set; }
+        public DbSet<Aluno> Alunos { get; set; }
+        public DbSet<Atividade> Atividades { get; set; }
+        public DbSet<Curso> Cursos { get; set; }
+        public DbSet<Materia> Materias { get; set; }
+        public DbSet<Modulo> Modulos{ get; set; }
+        public DbSet<Nota> Notas { get; set; }
+        public DbSet<Presenca> Presencas{ get; set; }
+        public DbSet<Professor> Professores{ get; set; }
         private DbSet<Turma> Turmas { get; set; }
 
     }
