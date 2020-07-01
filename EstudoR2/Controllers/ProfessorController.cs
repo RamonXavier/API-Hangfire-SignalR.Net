@@ -12,7 +12,6 @@ namespace EstudoR2.Controllers
     {
 
 
-        // GET: Professor
         public ActionResult Index()
         {
             return View("InsereProfessor");

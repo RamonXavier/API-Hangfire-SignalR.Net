@@ -1,0 +1,29 @@
+﻿@model List<EstudoR2.Models.Curso>
+
+@{
+    ViewBag.Title = "ListarCursos";
+}
+
+<h2>ListarCursos</h2>
+
+<table class="table table-striped table-responsive">
+    <thead>
+    <tr>
+        <td>Nome do Curso</td>
+        <td>Id Do Curso</td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var cursos in Model)
+    {
+        <tr>
+            <td>@cursos.NomeCurso</td>
+            <td>@cursos.IdCurso</td>
+            <td>@Html.ActionLink("Apagar", "ApagaCurso", new{idCurso = cursos.IdCurso}, new { @class = "btn btn-warning btn-block"})</td>
+            <td>@Html.ActionLink("Editar", "EditarCurso", new {idCurso = cursos.IdCurso} , new { @class = "btn btn-primary btn-block" })</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@Html.ActionLink("Inserir Novo Curso", "InserirCurso", null, new{@class = "btn btn-primary"})

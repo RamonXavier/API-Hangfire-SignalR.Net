@@ -14,7 +14,5 @@ namespace EstudoR2.Models
         [Column("descricao_curso")]
         public string NomeCurso { get; set; }
 
-        public ICollection<Modulo> Modulo { get; set; }
-
     }
 }

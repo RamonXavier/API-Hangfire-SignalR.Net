@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "InserirCurso";
+}
+
+<h2>InserirCurso</h2>
+
+@using (Html.BeginForm("InserirCursoAction", "Curso", FormMethod.Post))
+{
+<div class="form-group">
+    @Html.Label("NomeCurso", "Nome do Curso")
+    @Html.TextBox("NomeCurso", null, new { @class = "form-control" })
+</div>
+<button type="submit" class="btn btn-success">Salvar Curso</button>
+}
