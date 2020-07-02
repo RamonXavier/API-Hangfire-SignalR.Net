@@ -8,8 +8,8 @@
     <table class="table">
         <thead>
         <tr>
-            <td>Nome</td>
             <td>Id</td>
+            <td>Nome</td>
             <td></td>
         </tr>
         </thead>
@@ -17,12 +17,12 @@
         @foreach (var prof in Model)
         {
             <tr>
-                <td>@prof.NomeProfessor</td>
                 <td>@prof.IdProfessor</td>
-                <td>@Html.ActionLink("Apagar", "ApagaProfessor", "Professor", new { idProfessor = prof.IdProfessor }, new {@class="btn-danger btn btn-block"})</td>
-                <td>@Html.ActionLink("Editar", "EditarProfessor", "Professor", new { idProfessor = prof.IdProfessor }, new { @class = "btn-primary btn btn-block" })</td>
+                <td>@prof.NomeProfessor</td>
+                <td>@Html.ActionLink("  ", "ApagaProfessor", "Professor", new {idProfessor = prof.IdProfessor}, new {@class = "btn-danger btn btn-block fa fa-trash btn-sm" })</td>
+                <td>@Html.ActionLink(" ", "EditarProfessor", "Professor", new {idProfessor = prof.IdProfessor}, new {@class = "btn-primary btn btn-block btn-sm fa fa-refresh" })</td>
             </tr>
         }
         </tbody>
     </table>
-<a href="@Url.Action("Index", "Professor")">Inserir novo Professor</a>
+@Html.ActionLink(" ", "Index",null, new{@class = "btn btn-warning btn-sm fa fa-plus" })

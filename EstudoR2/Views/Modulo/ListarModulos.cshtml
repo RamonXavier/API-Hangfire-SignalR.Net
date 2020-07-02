@@ -22,12 +22,12 @@
                 <td>@modulos.IdModulo</td>
                 <td>@modulos.NomeModulo</td>
                 <td>@modulos.NomeCurso</td>
-                <td>@Html.ActionLink("Apagar","ApagarModulo", "Modulo", new{ @class = "btn btn-danger btn-block" })</td>
-                <td>@Html.ActionLink("Editar", "EditarModulo", "Modulo", new { @class = "btn btn-primary btn-block" })</td>
+                <td>@Html.ActionLink("  ","ApagarModulo", "Modulo", new{ idModulo = @modulos.IdModulo} ,new{ @class = "btn btn-danger btn-block fa fa-trash btn-sm" })</td>
+                <td>@Html.ActionLink(" ", "EditarModulo", "Modulo", new { idModulo = @modulos.IdModulo }, new { @class = "btn btn-primary btn-block btn-sm fa fa-refresh" })</td>
             </tr>
         }
     </tbody>
 </table>
 
 
-@Html.ActionLink("Inserir Novo Módulo", "InserirModulo", "Modulo", new { @class = "btn btn-sm btn-warning" })
+@Html.ActionLink(" ", "InserirModulo", "Modulo", new { @class = "btn btn-sm btn-warning fa fa-plus" })

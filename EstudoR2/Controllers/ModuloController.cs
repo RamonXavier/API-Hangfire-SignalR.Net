@@ -70,9 +70,19 @@ namespace EstudoR2.Controllers
 
         }
 
-        public ActionResult ApagarModulo(string s)
+        [HttpGet]
+        public ActionResult ApagarModulo(int idModulo)
         {
-            throw new NotImplementedException();
+            Modulo modulo = new Modulo();
+            modulo.IdModulo = idModulo;
+
+            using (var db = new R2Context())
+            {
+                db.Modulos.Attach(modulo);
+                db.Modulos.Remove(modulo);
+                db.SaveChanges();
+                return RedirectToAction("ListarModulos");
+            }
         }
 
         public ActionResult EditarModulo(string s)

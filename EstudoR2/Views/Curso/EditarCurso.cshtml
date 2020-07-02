@@ -16,5 +16,6 @@
         @Html.Label("idCruso", "Código do Curso")
         @Html.TextBox("idCurso", Model.IdCurso, null, new { @class = "form-control", @readonly = true })
     </div>
-    <button class="btn btn-success">Salvar Edição</button>
+    <button type="submit" class="btn btn-success btn-sm fa fa-floppy-o"> Salvar Edição</button>
+    <button type="reset" class="btn-primary btn-sm btn btn-warning fa fa-trash"> Limpar dados</button>
 }
