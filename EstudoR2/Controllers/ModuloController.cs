@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using EstudoR2.Context;
 using EstudoR2.Models;
 using EstudoR2.ViewModels;
@@ -11,15 +12,28 @@ namespace EstudoR2.Controllers
 {
     public class ModuloController : Controller
     {
+        public ModuloController()
+        {
+        }
+
+        IMapper _mapper;
+        public ModuloController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
         public ActionResult ListarModulos()
         {
-
             using (var db = new R2Context())
             {
-                var listaModulos = db.Modulos.ToList();
+                var listaModulos = db.Modulos.Select(x => new ListaModulosViewModel()
+                {
+                    NomeModulo = x.NomeModulo,
+                    IdModulo = x.IdModulo,
+                    NomeCurso = db.Cursos.Where(c=>c.IdCurso == x.IdCurso).Select(c=>c.NomeCurso).FirstOrDefault()
+                }).ToList();
                 return View(listaModulos);
             }
-
         }
 
         public ActionResult InserirModulo()

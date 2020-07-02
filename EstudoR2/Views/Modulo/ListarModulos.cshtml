@@ -1,4 +1,4 @@
-﻿@model List<EstudoR2.Models.Modulo>
+﻿@model List<EstudoR2.ViewModels.ListaModulosViewModel>
 
 @{
     ViewBag.Title = "ListarModulo";
@@ -21,7 +21,7 @@
             <tr>
                 <td>@modulos.IdModulo</td>
                 <td>@modulos.NomeModulo</td>
-                <td>@modulos.IdCurso</td>
+                <td>@modulos.NomeCurso</td>
                 <td>@Html.ActionLink("Apagar","ApagarModulo", "Modulo", new{ @class = "btn btn-danger btn-block" })</td>
                 <td>@Html.ActionLink("Editar", "EditarModulo", "Modulo", new { @class = "btn btn-primary btn-block" })</td>
             </tr>
