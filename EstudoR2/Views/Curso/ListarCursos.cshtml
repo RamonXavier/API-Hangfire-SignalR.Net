@@ -19,7 +19,7 @@
         <tr>
             <td>@cursos.NomeCurso</td>
             <td>@cursos.IdCurso</td>
-            <td>@Html.ActionLink("Apagar", "ApagaCurso", new{idCurso = cursos.IdCurso}, new { @class = "btn btn-warning btn-block"})</td>
+            <td>@Html.ActionLink("Apagar", "ApagaCurso", new{idCurso = cursos.IdCurso}, new { @class = "btn btn-danger btn-block"})</td>
             <td>@Html.ActionLink("Editar", "EditarCurso", new {idCurso = cursos.IdCurso} , new { @class = "btn btn-primary btn-block" })</td>
         </tr>
     }

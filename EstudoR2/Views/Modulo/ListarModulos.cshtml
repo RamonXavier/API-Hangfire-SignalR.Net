@@ -1,0 +1,33 @@
+﻿@model List<EstudoR2.Models.Modulo>
+
+@{
+    ViewBag.Title = "ListarModulo";
+}
+
+<h2>Listar Módulos</h2>
+
+
+<table class="table table-responsive table-condensed table-hover table-striped">
+    <thead>
+        <tr>
+            <td>Id Módulo</td>
+            <td>Nome do Módulo</td>
+            <td>Curso do Módulo</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var modulos in Model)
+        {
+            <tr>
+                <td>@modulos.IdModulo</td>
+                <td>@modulos.NomeModulo</td>
+                <td>@modulos.IdCurso</td>
+                <td>@Html.ActionLink("Apagar","ApagarModulo", "Modulo", new{ @class = "btn btn-danger btn-block" })</td>
+                <td>@Html.ActionLink("Editar", "EditarModulo", "Modulo", new { @class = "btn btn-primary btn-block" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@Html.ActionLink("Inserir Novo Módulo", "InserirModulo", "Modulo", new { @class = "btn btn-sm btn-warning" })
