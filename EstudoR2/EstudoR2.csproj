@@ -198,6 +198,7 @@
     <Compile Include="Context\R2Context.cs" />
     <Compile Include="Controllers\CursoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MateriaController.cs" />
     <Compile Include="Controllers\ModuloController.cs" />
     <Compile Include="Controllers\ProfessorController.cs" />
     <Compile Include="Global.asax.cs">
@@ -210,6 +211,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Aluno.cs" />
     <Compile Include="Models\Atividade.cs" />
+    <Compile Include="ViewModels\MateriasModulosProfessorViewModel.cs" />
     <Compile Include="Models\Nota.cs" />
     <Compile Include="Models\Presenca.cs" />
     <Compile Include="Models\Curso.cs" />
@@ -266,6 +268,9 @@
     <Content Include="Views\Curso\EditarCurso.cshtml" />
     <Content Include="Views\Modulo\ListarModulos.cshtml" />
     <Content Include="Views\Modulo\InserirModulo.cshtml" />
+    <Content Include="Views\Modulo\EditarModulo.cshtml" />
+    <Content Include="Views\Materia\ListarMaterias.cshtml" />
+    <Content Include="Views\Materia\InserirMaterias.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

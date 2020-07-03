@@ -1,0 +1,22 @@
+﻿@model EstudoR2.ViewModels.ListaCursosViewModel
+@{
+    ViewBag.Title = "EditarModulo";
+}
+
+<h2>EditarModulo</h2>
+
+@using (Html.BeginForm("Editar", "Modulo", null, FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.nomeModulo, "Nome Modulo")
+        @Html.TextBoxFor(model => model.nomeModulo, null, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.IdCursoSelecionado, "Curso do Módulo")
+        @Html.DropDownListFor(x=>x.IdCursoSelecionado,
+            new SelectList(Model.CursosDisponiveis, "Id", "Valor", Model.IdCursoSelecionado), new{ @class = "form-control" })
+    </div>
+    <input type="hidden" value=@Model.IdModulo name="idModulo" id="idModulo"/>
+    <button type="submit" class="btn btn-success btn-sm fa fa-floppy-o"> Salvar Edição</button>
+    <button type="reset" class="btn-primary btn-sm btn btn-warning fa fa-trash"> Limpar dados</button>
+}

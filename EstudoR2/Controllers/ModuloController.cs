@@ -85,9 +85,39 @@ namespace EstudoR2.Controllers
             }
         }
 
-        public ActionResult EditarModulo(string s)
+        [HttpGet]
+        public ActionResult EditarModulo(int idModulo)
         {
-            throw new NotImplementedException();
+
+            using (var db = new R2Context())
+            {
+                var moduloEditar = db.Modulos.Where(x=>x.IdModulo == idModulo).Select(x => new ListaCursosViewModel()
+                {
+                    IdModulo = x.IdModulo,
+                    nomeModulo = x.NomeModulo,
+                    IdCursoSelecionado = x.IdCurso,
+                    CursosDisponiveis = db.Cursos.Select(y=> new IdValorViewModel()
+                    {
+                        Id = y.IdCurso,
+                        Valor = y.NomeCurso
+                    }).ToList()
+                }).FirstOrDefault();
+                return View(moduloEditar);
+            }
+            //return RedirectToAction("ListarModulos");
+        }
+
+        [HttpPost]
+        public ActionResult Editar(int idModulo, int IdCursoSelecionado, string nomeModulo)
+        {
+            using (var db = new R2Context())
+            {
+                var moduloEditar = db.Modulos.Where(x=>x.IdModulo == idModulo).First();
+                moduloEditar.IdCurso = IdCursoSelecionado;
+                moduloEditar.NomeModulo = nomeModulo;
+                db.SaveChanges();
+                return RedirectToAction("ListarModulos");
+            }
         }
     }
 }
