@@ -13,27 +13,28 @@ namespace EstudoR2.Controllers
     {
         public ActionResult ListarMaterias()
         {
-            using (var db = new R2Context())
-            {
-                var viewModel = db.Materias.Select(x => new MateriasModulosProfessorViewModel()
-                {
-                    NomeMateria = x.NomeMateria,
+            //using (var db = new R2Context())
+            //{
+            //    var viewModel = db.Materias.Select(x => new MateriasModulosProfessorViewModel()
+            //    {
+            //        NomeMateria = x.NomeMateria,
 
-                    NomeProfessor = db.Professores.Where(p => p.IdProfessor == x.IdProfessor)
-                        .Select(p => p.NomeProfessor).FirstOrDefault(),
+            //        NomeProfessor = db.Professores.Where(p => p.IdProfessor == x.IdProfessor)
+            //            .Select(p => p.NomeProfessor).FirstOrDefault(),
 
-                    NomeModulo = db.Modulos.Where(m => m.IdModulo == x.IdModulo).Select(m => m.NomeModulo)
-                        .FirstOrDefault(),
+            //        NomeModulo = db.Modulos.Where(m => m.IdModulo == x.IdModulo).Select(m => m.NomeModulo)
+            //            .FirstOrDefault(),
 
-                    IdMateria = x.IdMateria,
+            //        IdMateria = x.IdMateria,
 
-                    NomeCurso = (from cursos in db.Cursos
-                                join modulos in db.Modulos on cursos.IdCurso equals modulos.IdCurso
-                                where modulos.IdModulo == x.IdModulo
-                                select cursos.NomeCurso).FirstOrDefault(),
-                }).ToList();
-                return View(viewModel);
-            }
+            //        NomeCurso = (from cursos in db.Cursos
+            //                    join modulos in db.Modulos on cursos.IdCurso equals modulos.IdCurso
+            //                    where modulos.IdModulo == x.IdModulo
+            //                    select cursos.NomeCurso).FirstOrDefault(),
+            //    }).ToList();
+            //    return View(viewModel);
+            //}
+            return RedirectToAction("ListarCursos", "Curso");
         }
 
         public ActionResult InserirMaterias()
@@ -66,15 +67,22 @@ namespace EstudoR2.Controllers
         [HttpPost]
         public ActionResult Inserir(int IdModuloSelecionado, int IdProfessorSelecionado, string nomeMateria)
         {
-            Materia m = new Materia();
-            m.NomeMateria = nomeMateria;
-            m.IdModulo = IdModuloSelecionado;
-            m.IdProfessor = IdProfessorSelecionado;
-
             using (var db = new R2Context())
             {
+                Materia m = new Materia();
+                m.NomeMateria = nomeMateria;
+                m.IdProfessor = IdProfessorSelecionado;
+
                 db.Materias.Add(m);
                 db.SaveChanges();
+
+                MateriaModulo mm = new MateriaModulo();
+                mm.IdModulo = IdModuloSelecionado;
+                mm.IdMateria = m.IdMateria;
+
+                db.MateriasModulos.Add(mm);
+                db.SaveChanges();
+
                 return RedirectToAction("ListarMaterias");
             }
         }

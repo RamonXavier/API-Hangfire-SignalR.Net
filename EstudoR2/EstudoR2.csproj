@@ -208,6 +208,10 @@
     <Compile Include="Migrations\202006291650104_PrimeiraMigracao.designer.cs">
       <DependentUpon>202006291650104_PrimeiraMigracao.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007031935057_correcaoMateria_insercaoMateriaModulo.cs" />
+    <Compile Include="Migrations\202007031935057_correcaoMateria_insercaoMateriaModulo.designer.cs">
+      <DependentUpon>202007031935057_correcaoMateria_insercaoMateriaModulo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Aluno.cs" />
     <Compile Include="Models\Atividade.cs" />
@@ -275,6 +279,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -292,6 +297,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202006291650104_PrimeiraMigracao.resx">
       <DependentUpon>202006291650104_PrimeiraMigracao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007031935057_correcaoMateria_insercaoMateriaModulo.resx">
+      <DependentUpon>202007031935057_correcaoMateria_insercaoMateriaModulo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

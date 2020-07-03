@@ -14,13 +14,11 @@ namespace EstudoR2.Models
         public int IdMateriaModulo { get; set; }
 
         [ForeignKey("Materia"), Column("id_materia")]
-        public int idMateria { get; set; }
-
+        public int IdMateria { get; set; }
         public virtual Materia Materia { get; set; }
 
         [ForeignKey("Modulo"), Column("id_modulo")]
         public int IdModulo { get; set; }
-
         public virtual Modulo Modulo { get; set; }
     }
 }
