@@ -23,6 +23,7 @@ namespace EstudoR2.Context
         public DbSet<Presenca> Presencas{ get; set; }
         public DbSet<Professor> Professores{ get; set; }
         private DbSet<Turma> Turmas { get; set; }
+        private DbSet<MateriaModulo> MateriasModulos { get; set; }
 
     }
 }
