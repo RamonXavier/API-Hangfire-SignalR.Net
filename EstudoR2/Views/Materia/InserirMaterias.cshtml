@@ -12,24 +12,25 @@
     </div>
     <div class="form-group col-md-4">
         @Html.Label("nomeModulo", "Módulo da Matéria")
-        @Html.DropDownListFor(model => model.IdModuloSelecionado,
-            new SelectList(Model.ModuloDisponivel, "Id", "Valor", Model.NomeModulo), "Selecionar...", new { @class = "form-control selectMult multiselect", @id = "teste", multiple = "multiple" })
+        @Html.ListBoxFor(model => model.ModuloDisponivel,
+             new SelectList(Model.ModuloDisponivel, "Id", "Valor"), new { @class = "form-control aaa", @multiple = true })
     </div>
     <div class="form-group col-md-4">
         @Html.Label("nomeProfessor", "Professor Responsável da Matéria")
         @Html.DropDownListFor(model => model.IdProfessorSelecionado,
-            new SelectList(Model.ProfessorDisponivel, "Id", "Valor", Model.IdProfessorSelecionado), "Selecionar...", new { @class = "form-control selectMult" })
+             new SelectList(Model.ProfessorDisponivel, "Id", "Valor", Model.IdProfessorSelecionado), "Selecionar...", new { @class = "form-control", })
     </div>
     <div class="form-group">
         <button type="submit" class="btn-primary btn-sm btn btn-success fa fa-floppy-o"> Salvar módulo</button>
         <button type="reset" class="btn-primary btn-sm btn btn-warning fa fa-trash"> Limpar dados</button>
     </div>
-    <select id="example-getting-started" multiple="multiple">
-        <option value="cheese">Cheese</option>
-        <option value="tomatoes">Tomatoes</option>
-        <option value="mozarella">Mozzarella</option>
-        <option value="mushrooms">Mushrooms</option>
-        <option value="pepperoni">Pepperoni</option>
-        <option value="onions">Onions</option>
-    </select>
 }
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#ModuloDisponivel").selected();
+            $(".aaa").selected();
+        });
+    </script>
+}
+

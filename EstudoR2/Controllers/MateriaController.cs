@@ -65,27 +65,29 @@ namespace EstudoR2.Controllers
         }
 
         [HttpPost]
-        public ActionResult Inserir(int IdModuloSelecionado, int IdProfessorSelecionado, string nomeMateria)
+        public ActionResult Inserir(MateriasModulosProfessorViewModel materiasModulosProfessorVM)
         {
-            using (var db = new R2Context())
-            {
-                Materia m = new Materia();
-                m.NomeMateria = nomeMateria;
-                m.IdProfessor = IdProfessorSelecionado;
+            //using (var db = new R2Context())
+            //{
+            //    Materia m = new Materia();
+            //    m.NomeMateria = nomeMateria;
+            //    m.IdProfessor = IdProfessorSelecionado;
 
-                db.Materias.Add(m);
-                db.SaveChanges();
+            //    db.Materias.Add(m);
 
-                MateriaModulo mm = new MateriaModulo();
-                mm.IdModulo = IdModuloSelecionado;
-                mm.IdMateria = m.IdMateria;
+            //    MateriaModulo mm = new MateriaModulo();
+            //    foreach (var moduloSelecionado in ModuloDisponivel)
+            //    {
+            //        mm.IdMateria = m.IdMateria;
+            //        mm.IdModulo = moduloSelecionado;
+            //        db.MateriasModulos.Add(mm);
+            //    }
+            //    db.SaveChanges();
 
-                db.MateriasModulos.Add(mm);
-                db.SaveChanges();
-
+                ////}
                 return RedirectToAction("ListarMaterias");
             }
-        }
+        //}
 
         public ActionResult Apagar(int idmodulo)
         {

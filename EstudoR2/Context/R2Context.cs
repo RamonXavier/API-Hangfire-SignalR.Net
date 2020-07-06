@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 using EstudoR2.Models;
@@ -24,6 +25,11 @@ namespace EstudoR2.Context
         public DbSet<Professor> Professores{ get; set; }
         private DbSet<Turma> Turmas { get; set; }
         public DbSet<MateriaModulo> MateriasModulos { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+        }
 
     }
 }

@@ -55,15 +55,12 @@ namespace EstudoR2.Controllers
         }
 
         [HttpPost]
-        public ActionResult InserirModuloAction(string nomeModulo, int IdCursoSelecionado)
+        public ActionResult InserirModuloAction(Modulo modulo)
         {
-            Modulo m1 = new Modulo();
-            m1.NomeModulo = nomeModulo;
-            m1.IdCurso = IdCursoSelecionado;
-
+           
             using (var db = new R2Context())
             {
-                db.Modulos.Add(m1);
+                db.Modulos.Add(modulo);
                 db.SaveChanges(); 
                 return RedirectToAction("ListarModulos");
             }
