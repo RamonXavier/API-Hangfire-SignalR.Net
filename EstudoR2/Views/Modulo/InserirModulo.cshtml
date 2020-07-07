@@ -1,83 +1,102 @@
 ﻿@model EstudoR2.ViewModels.ListaCursosViewModel
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
 @{
     ViewBag.Title = "InserirModulo";
 }
 <h2>InserirModulo</h2>
-
-@using (Html.BeginForm("InserirModuloAction", "Modulo", FormMethod.Post))
-{
+<div id="retorno">
+    <h1 id="ret"></h1>
+</div>
+<form id="formModulo" method="post">
     <div class="form-group col-md-4">
         @Html.Label("nomeModulo", "Nome do Módulo")
-        @Html.TextBox("nomeModulo", null, null, new { @class = "form-control" })
+        @Html.TextBox("nomeModulo", HttpUtility.HtmlDecode(null), null, new { @class = "form-control", @required = true })
     </div>
 
-    <div class="form-group col-md-8">
-        @Html.Label("moduloCurso", "Curso deste Módulo")
+    <div class="form-group col-md-7">
+        @Html.LabelFor(x => x.IdCursoSelecionado)
         @Html.DropDownListFor(x => x.IdCursoSelecionado,
-            new SelectList(Model.CursosDisponiveis, "id", "valor", Model.IdCursoSelecionado), "Curso...", new { @class = "form-control", @id = "IdCursoSelecionado", @multiple = "multiple", @required = true })
-
-        <button class="btn btn-success btn-sm fa fa-plus" data-toggle="modal" data-target="#cadastroCurso" id="teste"></button>
-        <div class="modal fade" id="cadastroCurso" tabindex="-1" role="dialog" aria-labelledby="cadastroCursoLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+            new SelectList(Model.CursosDisponiveis, "id", "valor", Model.IdCursoSelecionado), "Curso...", new { @class = "form-control", @required = true })
+    </div>
+    <br />
+    <button class="btn btn-success btn-sm fa fa-plus" data-toggle="modal" data-target="#cadastroCurso" id="insereNovoCurso"></button>
+    <div class="form-group col-md-12">
+        <button class="btn-primary btn-sm btn btn-success fa fa-floppy-o" id="salvaModulo"> Salvar módulo</button>
+        <button type="reset" class="btn-primary btn-sm btn btn-warning fa fa-trash"> Limpar dados</button>
+    </div>
+</form>
+<div class="modal fade" id="cadastroCurso" tabindex="-1" role="dialog" aria-labelledby="cadastroCursoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formCurso">
+                    <div class="form-group">
+                        @Html.Label("NomeCurso", "Nome do Curso")
+                        @Html.TextBox("NomeCurso", null, new { @class = "form-control" })
                     </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
+                    <button class="btn-primary btn-sm btn btn-success fa fa-floppy-o" id="novoCurso"> Salvar Curso</button>
+                    <button type="reset" class="btn-primary btn-sm btn btn-warning fa fa-trash"> Limpar Dados</button>
+                </form>
             </div>
         </div>
     </div>
-    <div class="form-group">
-        <button type="submit" class="btn-primary btn-sm btn btn-success fa fa-floppy-o"> Salvar módulo</button>
-        <button type="reset" class="btn-primary btn-sm btn btn-warning fa fa-trash"> Limpar dados</button>
-    </div>
-}
-
+</div>
 @section scripts
 {
+    <script>
+        $(document).ready(function() {
+            $("#IdCurso").selectpicker();
+            $("#insereNovoCurso").click(function() {
+                $("#modal").modal();
+            });
+        })
 
-}
+        $("#novoCurso").click(function() {
+            $("#IdCurso").selectpicker('refresh');
+        })
 
-<script>
-    $(document).ready(function () {
-
-        $("#IdCursoSelecionado").selecticker();
-
-        $("teste").click(function () {
-            alert("kjkjk");
-            $("#modal").modal();
-        });
-    })
-
-    $("#idForm").submit(function (e) {
-
-        e.preventDefault(); // avoid to execute the actual submit of the form.
-
-        var form = $(this);
-        var url = form.attr('action');
-
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: form.serialize(), // serializes the form's elements.
-            success: function (data) {
-                alert(data); // show response from the php script.
+        $("#novoCurso").click(function(e) {
+            var form = $("#formCurso");
+            var url = "Curso/Inserir";
+            var valores =
+            {
+                nomeCurso: $("#NomeCurso").val(),
             }
+            console.log(valores);
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: valores,
+                success: function() {
+                    $("#ret").html("enviando")
+                    window.refresh();
+                }
+            });
         });
 
-
-    });
-</script>
+        $("#salvaModulo").click(function (e) {
+            var form = $("#formModulo");
+            var url = "InserirModuloAction";
+            var valores =
+            {
+                nomeModulo: $("#nomeModulo").val(),
+                IdCurso: $("#IdCursoSelecionado").val()
+            }
+            console.log(valores);
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: valores,
+                success: function () {
+                    $("#ret").html("enviando")
+                }
+            });
+        });
+    </script>
+}

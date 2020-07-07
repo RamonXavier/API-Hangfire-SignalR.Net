@@ -39,6 +39,21 @@ namespace EstudoR2.Controllers
             }
         }
 
+        [HttpPost]
+        public string Inserir(string NomeCurso)
+        {
+            Curso c1 = new Curso();
+            c1.NomeCurso = NomeCurso;
+
+            using (var db = new R2Context())
+            {
+                db.Cursos.Add(c1);
+                db.SaveChanges();
+                return "salvo com sucesso";
+            }
+
+        }
+
         [HttpGet]
         public ActionResult ApagaCurso(int idCurso)
         {
