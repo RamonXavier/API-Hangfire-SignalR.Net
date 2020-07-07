@@ -5,24 +5,34 @@
 
 <h2>Listar Professores</h2>
 
-    <table class="table">
-        <thead>
+<table id="table" class="table">
+    <thead>
         <tr>
             <td>Id</td>
             <td>Nome</td>
-            <td></td>
+            <td>Ação/Excluir</td>
+            <td>Ação/Editar</td>
         </tr>
-        </thead>
-        <tbody>
+    </thead>
+    <tbody>
         @foreach (var prof in Model)
         {
             <tr>
                 <td>@prof.IdProfessor</td>
                 <td>@prof.NomeProfessor</td>
-                <td>@Html.ActionLink("  ", "ApagaProfessor", "Professor", new {idProfessor = prof.IdProfessor}, new {@class = "btn-danger btn btn-block fa fa-trash btn-sm" })</td>
-                <td>@Html.ActionLink(" ", "EditarProfessor", "Professor", new {idProfessor = prof.IdProfessor}, new {@class = "btn-primary btn btn-block btn-sm fa fa-refresh" })</td>
+                <td>@Html.ActionLink("  ", "ApagaProfessor", "Professor", new { idProfessor = prof.IdProfessor }, new { @class = "btn-danger btn btn-block fa fa-trash btn-sm" })</td>
+                <td>@Html.ActionLink(" ", "EditarProfessor", "Professor", new { idProfessor = prof.IdProfessor }, new { @class = "btn-primary btn btn-block btn-sm fa fa-refresh" })</td>
             </tr>
         }
-        </tbody>
-    </table>
-@Html.ActionLink(" ", "Index",null, new{@class = "btn btn-warning btn-sm fa fa-plus" })
+    </tbody>
+</table>
+@Html.ActionLink(" ", "Index", null, new { @class = "btn btn-warning btn-sm fa fa-plus" })
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $('#table').DataTable();
+        })
+    </script>
+}
