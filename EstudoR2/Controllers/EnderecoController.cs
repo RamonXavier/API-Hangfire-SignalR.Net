@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
@@ -47,6 +48,53 @@ namespace EstudoR2.Controllers
             response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             return Json(responseBody, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> postHttp()
+        {
+            var values = new Dictionary<string, string>
+            {
+                { "title", "hello" },
+                { "body", "hello" },
+                { "userId", "212" }
+            };
+
+            var content = new FormUrlEncodedContent(values);
+
+            var response = await client.PostAsync("https://jsonplaceholder.typicode.com/posts", content);
+
+            var responseString = await response.Content.ReadAsStringAsync();
+            return Json(responseString, JsonRequestBehavior.AllowGet);
+        }
+        public async Task getHttp()
+        {
+            // GET CEP 
+            var cepLimpo = "36071240";
+            var teste = HttpClientFactory.Create();
+            var url = ($"http://viacep.com.br/ws/{cepLimpo}/json/");
+            var req = await HttpClient.GetStringAsync(url);
+
+            // POST API
+            var values = new Dictionary<string, string>
+            {
+                { "title", "hello" },
+                { "body", "hello" },
+                { "userId", "212" }
+            }.ToString();
+
+            var urlPost = ($"https://jsonplaceholder.typicode.com/posts");
+
+            using (var client = new HttpClient())
+            {
+                var req2 = await client.PostAsync("https://jsonplaceholder.typicode.com/posts",
+                    new StringContent(values));
+                req2.EnsureSuccessStatusCode();
+                var ag = "";
+            }
+
+            var a = "a";
+
         }
 
     }

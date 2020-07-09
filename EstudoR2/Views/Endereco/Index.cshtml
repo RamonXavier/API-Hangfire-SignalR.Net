@@ -24,6 +24,11 @@
         <label for="logradouro">logradouro</label>
         <input name="logradouro" id="logradouro" type="text" class="form-control" />
     </div>
+    
+    <div class="col-md-2">
+        <label for="numero">número</label>
+        <input name="numero" id="numero" type="number" class="form-control" />
+    </div>
 
     <div class="col-md-4">
         <label for="complemento">complemento</label>
@@ -40,13 +45,22 @@
         <input name="localidade" id="localidade" type="text" class="form-control" />
     </div>
     
-    <div class="col-md-4">
+    <div class="col-md-2">
         <label for="uf">uf</label>
         <input name="uf" id="uf" type="text" class="form-control" />
     </div>
 </div> 
 <div class="container-fluid" style="margin-top: 20%;">
     <button id="" class="btn btn-block">Salvar</button>
+</div>
+
+<div id="resultPost" style="margin-top: 20px">
+    <div id="bodyJumbotron">
+
+    </div>
+</div>
+<div class="container-fluid"">
+    <button id="salvaPost" class="btn btn-block">Post</button>
 </div>
 
 @section scripts
@@ -89,6 +103,21 @@
                     $("#bairro").val(obj.bairro);
                     $("#localidade").val(obj.localidade);
                     $("#uf").val(obj.uf);
+                    console.log(result);
+                }
+            });
+        });
+
+        $("#salvaPost").click(function (e) {
+            var url = "/Endereco/postHttp";
+            var valores = { cep: $("#cep").val() }
+            $.ajax({
+                type: "GET",
+                url: url,
+                data: valores,
+                success: function (result) {
+                    $("#resultPost").addClass("jumbotron");
+                        $("#bodyJumbotron").html(result);
                     console.log(result);
                 }
             });
