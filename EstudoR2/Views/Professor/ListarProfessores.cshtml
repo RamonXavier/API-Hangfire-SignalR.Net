@@ -21,18 +21,14 @@
                 <td>@prof.IdProfessor</td>
                 <td>@prof.NomeProfessor</td>
                 <td>@Html.ActionLink("  ", "ApagaProfessor", "Professor", new { idProfessor = prof.IdProfessor }, new { @class = "btn-danger btn btn-block fa fa-trash btn-sm" })</td>
-                <td>@Html.ActionLink(" ", "EditarProfessor", "Professor", new { idProfessor = prof.IdProfessor }, new { @class = "btn-primary btn btn-block btn-sm fa fa-refresh" })</td>
+                <td>@Html.ActionLink(" ", "EditarProfessor", "Professor", new { idProfessor = prof.IdProfessor }, new { @class = "btn-primary btn btn-block btn-sm fa fa-pencil" })</td>
             </tr>
         }
     </tbody>
 </table>
-@Html.ActionLink(" ", "Index", null, new { @class = "btn btn-warning btn-sm fa fa-plus" })
+@Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-sm fa fa-plus" })
 
 @section scripts
 {
-    <script>
-        $(document).ready(function() {
-            $('#table').DataTable();
-        })
-    </script>
+
 }

@@ -27,10 +27,10 @@
                 <td>@materias.NomeCurso</td>
                 <td>@materias.NomeProfessor</td>
                 <td>@Html.ActionLink("  ","Apagar", "Materia", new{ idModulo = @materias.IdMateria} ,new{ @class = "btn btn-danger btn-block fa fa-trash btn-sm" })</td>
-                <td>@Html.ActionLink(" ", "Editar", "Materia", new { idModulo = @materias.IdMateria }, new { @class = "btn btn-primary btn-block btn-sm fa fa-refresh" })</td>
+                <td>@Html.ActionLink(" ", "Editar", "Materia", new { idModulo = @materias.IdMateria }, new { @class = "btn btn-primary btn-block btn-sm fa fa-pencil" })</td>
             </tr>
         }
     </tbody>
 </table>
 
-@Html.ActionLink(" ", "InserirMaterias", "Materia", null, new { @class = "btn btn-sm btn-warning fa fa-plus", @title = "" })
+@Html.ActionLink(" ", "InserirMaterias", "Materia", null, new { @class = "btn btn-sm btn-primary fa fa-plus", @title = "" })

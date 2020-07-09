@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Teste Regex</h2>
+<label for="cpf">CPF</label>
+<input name="cpf" id="cpf" type="text" />
+<button id="envia">Enviar</button>
+
+<label for="result">Resultado</label>
+<input name="result" id="result" type="text" />
+
+
+<h2>Teste API - Requisição</h2>
+<div class="col-md-12">
+    <label for="cep">CEP</label>
+    <input name="cep" id="cep" type="text" class="form-control" />
+    <button id="enviaApi" class="btn btn-sm">Buscar Endereço</button>
+</div>
+<div class="form-group">
+
+    <div class="col-md-4">
+        <label for="logradouro">logradouro</label>
+        <input name="logradouro" id="logradouro" type="text" class="form-control" />
+    </div>
+
+    <div class="col-md-4">
+        <label for="complemento">complemento</label>
+        <input name="complemento" id="complemento" type="text" class="form-control" />
+    </div>
+
+    <div class="col-md-4">
+        <label for="bairro">bairro</label>
+        <input name="bairro" id="bairro" type="text" class="form-control" />
+    </div>
+
+    <div class="col-md-4">
+        <label for="localidade">localidade</label>
+        <input name="localidade" id="localidade" type="text" class="form-control" />
+    </div>
+    
+    <div class="col-md-4">
+        <label for="uf">uf</label>
+        <input name="uf" id="uf" type="text" class="form-control" />
+    </div>
+</div> 
+<div class="container-fluid" style="margin-top: 20%;">
+    <button id="" class="btn btn-block">Salvar</button>
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#cpf").mask("000.000.000-00");
+            $("#cep").mask("00000-000");
+        });
+
+        $("#envia").click(function (e) {
+            var url = "/Endereco/testaRegex";
+            var valores =
+            {
+                cep: $("#cpf").val()
+            }
+            console.log(valores);
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: valores,
+                success: function (result) {
+                    $("#result").val(result.Text);
+                    console.log(result);
+                }
+            });
+        });
+
+        $("#enviaApi").click(function (e) {
+            var url = "/Endereco/buscaEndereco";
+            var valores = { cep: $("#cep").val() }
+            $.ajax({
+                type: "GET",
+                url: url,
+                data: valores,
+                success: function (result) {
+                    var obj = $.parseJSON(result);
+                    $("#logradouro").val(obj.logradouro);
+                    $("#complemento").val(obj.complemento);
+                    $("#bairro").val(obj.bairro);
+                    $("#localidade").val(obj.localidade);
+                    $("#uf").val(obj.uf);
+                    console.log(result);
+                }
+            });
+        });
+
+    </script>
+
+}

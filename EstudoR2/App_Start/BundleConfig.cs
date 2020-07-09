@@ -15,7 +15,9 @@ namespace EstudoR2
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/bootstrap-multiselect.js", 
-                        "~/Scripts/chosen.jquery.js"));
+                        "~/Scripts/chosen.jquery.js",
+                        "~/Scripts/jquery.toast.js",
+                        "~/Scripts/jquery.mask.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -30,9 +32,8 @@ namespace EstudoR2
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/bootstrap-multiselect.css",
-                      "~/Content/chosen.css"));
-            //BundleTable.EnableOptimizations = true;
-            //bundles.UseCdn = true;
+                      "~/Content/chosen.css",
+                      "~/Content/jquery.toast.css"));
         }
     }
 }

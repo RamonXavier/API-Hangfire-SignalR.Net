@@ -22,19 +22,13 @@
                 <td>@cursos.IdCurso</td>
                 <td>@cursos.NomeCurso</td>
                 <td>@Html.ActionLink("  ", "ApagaCurso", new { idCurso = cursos.IdCurso }, new { @class = "btn btn-danger btn-block fa fa-trash btn-sm" })</td>
-                <td>@Html.ActionLink(" ", "EditarCurso", new { idCurso = cursos.IdCurso }, new { @class = "btn btn-primary btn-block btn-sm fa fa-refresh" })</td>
+                <td>@Html.ActionLink(" ", "EditarCurso", new { idCurso = cursos.IdCurso }, new { @class = "btn btn-primary btn-block btn-sm fa fa-pencil" })</td>
             </tr>
         }
     </tbody>
 </table>
-@Html.ActionLink(" ", "InserirCurso", null, new { @class = "btn btn-success btn-sm fa fa-plus" })
+@Html.ActionLink(" ", "InserirCurso", null, new { @class = "btn btn-primary btn-sm fa fa-plus" })
 @section scripts
 {
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js">
-    </script>
-    <script>
-        $(document).ready(function () {
-            $('#table').DataTable();
-        });
-    </script>
+
 }

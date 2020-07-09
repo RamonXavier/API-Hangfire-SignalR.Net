@@ -4,27 +4,22 @@
     ViewBag.Title = "InserirModulo";
 }
 <h2>InserirModulo</h2>
-<div id="retorno">
-    <h1 id="ret"></h1>
+<div class="form-group col-md-4">
+    @Html.Label("nomeModulo", "Nome do Módulo")
+    @Html.TextBox("nomeModulo", HttpUtility.HtmlDecode(null), null, new { @class = "form-control", @required = true })
 </div>
-<form id="formModulo" method="post">
-    <div class="form-group col-md-4">
-        @Html.Label("nomeModulo", "Nome do Módulo")
-        @Html.TextBox("nomeModulo", HttpUtility.HtmlDecode(null), null, new { @class = "form-control", @required = true })
-    </div>
-
-    <div class="form-group col-md-7">
-        @Html.LabelFor(x => x.IdCursoSelecionado)
-        @Html.DropDownListFor(x => x.IdCursoSelecionado,
-            new SelectList(Model.CursosDisponiveis, "id", "valor", Model.IdCursoSelecionado), "Curso...", new { @class = "form-control", @required = true })
-    </div>
-    <br />
-    <button class="btn btn-success btn-sm fa fa-plus" data-toggle="modal" data-target="#cadastroCurso" id="insereNovoCurso"></button>
-    <div class="form-group col-md-12">
-        <button class="btn-primary btn-sm btn btn-success fa fa-floppy-o" id="salvaModulo"> Salvar módulo</button>
-        <button type="reset" class="btn-primary btn-sm btn btn-warning fa fa-trash"> Limpar dados</button>
-    </div>
-</form>
+<div class="form-group col-md-3">
+    @Html.LabelFor(x => x.IdCursoSelecionado)
+    @Html.DropDownListFor(x => x.IdCursoSelecionado,
+        new SelectList(Model.CursosDisponiveis, "id", "valor", Model.IdCursoSelecionado), "Curso...", new { @class = "form-control", @required = true })
+</div>
+<br />
+<button class="btn btn-success btn-sm fa fa-plus" data-toggle="modal" data-target="#cadastroCurso" id="insereNovoCurso"></button>
+<div class="form-group col-md-12">
+    <button class="btn-primary btn-sm btn btn-success fa fa-floppy-o" id="salvaModulo"> Salvar módulo</button>
+    <button type="reset" class="btn-primary btn-sm btn btn-warning fa fa-trash"> Limpar dados</button>
+    <button onclick="history.go(-1);" class="btn-primary btn-sm btn btn-primary fa fa-sign-out"> Voltar</button>
+</div>
 <div class="modal fade" id="cadastroCurso" tabindex="-1" role="dialog" aria-labelledby="cadastroCursoLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -38,7 +33,7 @@
                 <form id="formCurso">
                     <div class="form-group">
                         @Html.Label("NomeCurso", "Nome do Curso")
-                        @Html.TextBox("NomeCurso", null, new { @class = "form-control" })
+                        @Html.TextBox("NomeCurso", null, new { @class = "form-control", @required = true })
                     </div>
                     <button class="btn-primary btn-sm btn btn-success fa fa-floppy-o" id="novoCurso"> Salvar Curso</button>
                     <button type="reset" class="btn-primary btn-sm btn btn-warning fa fa-trash"> Limpar Dados</button>
@@ -49,54 +44,5 @@
 </div>
 @section scripts
 {
-    <script>
-        $(document).ready(function() {
-            $("#IdCurso").selectpicker();
-            $("#insereNovoCurso").click(function() {
-                $("#modal").modal();
-            });
-        })
-
-        $("#novoCurso").click(function() {
-            $("#IdCurso").selectpicker('refresh');
-        })
-
-        $("#novoCurso").click(function(e) {
-            var form = $("#formCurso");
-            var url = "Curso/Inserir";
-            var valores =
-            {
-                nomeCurso: $("#NomeCurso").val(),
-            }
-            console.log(valores);
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: valores,
-                success: function() {
-                    $("#ret").html("enviando")
-                    window.refresh();
-                }
-            });
-        });
-
-        $("#salvaModulo").click(function (e) {
-            var form = $("#formModulo");
-            var url = "InserirModuloAction";
-            var valores =
-            {
-                nomeModulo: $("#nomeModulo").val(),
-                IdCurso: $("#IdCursoSelecionado").val()
-            }
-            console.log(valores);
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: valores,
-                success: function () {
-                    $("#ret").html("enviando")
-                }
-            });
-        });
-    </script>
+    <script src="~/Content/js/modulos.js"></script>
 }

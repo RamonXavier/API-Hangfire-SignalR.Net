@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using EstudoR2.Context;
 using EstudoR2.Models;
+using EstudoR2.ViewModels;
 
 namespace EstudoR2.Controllers
 {
@@ -40,16 +41,18 @@ namespace EstudoR2.Controllers
         }
 
         [HttpPost]
-        public string Inserir(string NomeCurso)
+        public JsonResult Inserir(Curso curso)
         {
-            Curso c1 = new Curso();
-            c1.NomeCurso = NomeCurso;
-
             using (var db = new R2Context())
             {
-                db.Cursos.Add(c1);
+                db.Cursos.Add(curso);
                 db.SaveChanges();
-                return "salvo com sucesso";
+                var itemList = db.Cursos.Select(item => new IdValorViewModel
+                {
+                    Id = item.IdCurso,
+                    Valor = item.NomeCurso
+                }).ToList();
+                return Json(new SelectList(itemList, "id", "valor"));
             }
 
         }

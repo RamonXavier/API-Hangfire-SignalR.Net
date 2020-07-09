@@ -55,14 +55,14 @@ namespace EstudoR2.Controllers
         }
 
         [HttpPost]
-        public ActionResult InserirModuloAction(Modulo modulo)
+        public string Inserir(Modulo modulo)
         {
            
             using (var db = new R2Context())
             {
                 db.Modulos.Add(modulo);
                 db.SaveChanges(); 
-                return RedirectToAction("ListarModulos");
+                return $"{modulo.NomeModulo}";
             }
 
         }
