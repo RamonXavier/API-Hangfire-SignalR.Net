@@ -34,5 +34,10 @@ namespace EstudoR2.Models
 
         [JsonProperty("gia")]
         public string Gia { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Cep}, {Logradouro}, {Complemento}, {Bairro}, {Localidade}, {Uf}, {Unidade}, {Ibge}, {Gia}";
+        }
     }
 }

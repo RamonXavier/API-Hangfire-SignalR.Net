@@ -45,54 +45,51 @@ namespace EstudoR2.Controllers
             var cepLimpo = r.Replace(cep, "");
 
             HttpResponseMessage response = await client.GetAsync($"http://viacep.com.br/ws/{cepLimpo}/json/");
-            response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
-            return Json(responseBody, JsonRequestBehavior.AllowGet);
+            string retornoHttp = await response.Content.ReadAsStringAsync();
+            return Json(retornoHttp, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public async Task<JsonResult> postHttp()
         {
-            var values = new Dictionary<string, string>
+            var valoresTestePost = new Dictionary<string, string>
             {
-                { "title", "hello" },
-                { "body", "hello" },
-                { "userId", "212" }
+                { "title", "Post Ramon" },
+                { "body", "texto" },
+                { "userId", "101" }
             };
 
-            var content = new FormUrlEncodedContent(values);
+            var conteudoPost = new FormUrlEncodedContent(valoresTestePost);
+            var response = await client.PostAsync("https://jsonplaceholder.typicode.com/posts", conteudoPost);
 
-            var response = await client.PostAsync("https://jsonplaceholder.typicode.com/posts", content);
-
-            var responseString = await response.Content.ReadAsStringAsync();
-            return Json(responseString, JsonRequestBehavior.AllowGet);
+            var retornoHttp = await response.Content.ReadAsStringAsync();
+            return Json(retornoHttp, JsonRequestBehavior.AllowGet);
         }
+
+        //[HttpPut]
+        public async Task<JsonResult> putHttp()
+        {
+
+            var valoresTestePut = new Dictionary<string, string>()
+            {
+                { "title", "Post Ramon - X" },
+                { "body", "texto - X" },
+                { "userId", "101" },
+                { "id", "1" },
+            };
+
+            var conteudoPut = new FormUrlEncodedContent(valoresTestePut);
+            var response = await client.PutAsync("https://jsonplaceholder.typicode.com/posts/1}", conteudoPut);
+            var retornoHttp = await response.Content.ReadAsStringAsync();
+            return Json(retornoHttp, JsonRequestBehavior.AllowGet);
+        }
+
         public async Task getHttp()
         {
-            // GET CEP 
             var cepLimpo = "36071240";
             var teste = HttpClientFactory.Create();
             var url = ($"http://viacep.com.br/ws/{cepLimpo}/json/");
             var req = await HttpClient.GetStringAsync(url);
-
-            // POST API
-            var values = new Dictionary<string, string>
-            {
-                { "title", "hello" },
-                { "body", "hello" },
-                { "userId", "212" }
-            }.ToString();
-
-            var urlPost = ($"https://jsonplaceholder.typicode.com/posts");
-
-            using (var client = new HttpClient())
-            {
-                var req2 = await client.PostAsync("https://jsonplaceholder.typicode.com/posts",
-                    new StringContent(values));
-                req2.EnsureSuccessStatusCode();
-                var ag = "";
-            }
-
             var a = "a";
 
         }
