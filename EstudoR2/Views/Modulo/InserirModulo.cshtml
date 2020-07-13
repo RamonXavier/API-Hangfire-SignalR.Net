@@ -1,0 +1,48 @@
+﻿@model EstudoR2.ViewModels.ListaCursosViewModel
+
+@{
+    ViewBag.Title = "InserirModulo";
+}
+<h2>InserirModulo</h2>
+<div class="form-group col-md-4">
+    @Html.Label("nomeModulo", "Nome do Módulo")
+    @Html.TextBox("nomeModulo", HttpUtility.HtmlDecode(null), null, new { @class = "form-control", @required = true })
+</div>
+<div class="form-group col-md-3">
+    @Html.LabelFor(x => x.IdCursoSelecionado)
+    @Html.DropDownListFor(x => x.IdCursoSelecionado,
+        new SelectList(Model.CursosDisponiveis, "id", "valor", Model.IdCursoSelecionado), "Curso...", new { @class = "form-control", @required = true })
+</div>
+<br />
+<button class="btn btn-success btn-sm fa fa-plus" data-toggle="modal" data-target="#cadastroCurso" id="insereNovoCurso"></button>
+<div class="form-group col-md-12">
+    <button class="btn-primary btn-sm btn btn-success fa fa-floppy-o" id="salvaModulo"> Salvar módulo</button>
+    <button type="reset" class="btn-primary btn-sm btn btn-warning fa fa-trash"> Limpar dados</button>
+    <button onclick="history.go(-1);" class="btn-primary btn-sm btn btn-primary fa fa-sign-out"> Voltar</button>
+</div>
+<div class="modal fade" id="cadastroCurso" tabindex="-1" role="dialog" aria-labelledby="cadastroCursoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formCurso">
+                    <div class="form-group">
+                        @Html.Label("NomeCurso", "Nome do Curso")
+                        @Html.TextBox("NomeCurso", null, new { @class = "form-control", @required = true })
+                    </div>
+                    <button class="btn-primary btn-sm btn btn-success fa fa-floppy-o" id="novoCurso"> Salvar Curso</button>
+                    <button type="reset" class="btn-primary btn-sm btn btn-warning fa fa-trash"> Limpar Dados</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script src="~/Content/js/modulos.js"></script>
+}

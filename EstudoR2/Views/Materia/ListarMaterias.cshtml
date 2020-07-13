@@ -1,0 +1,36 @@
+﻿@model List<EstudoR2.ViewModels.MateriasModulosProfessorViewModel>
+
+
+@{
+    ViewBag.Title = "ListarMaterias";
+}
+
+<h2>Listar Matérias</h2>
+
+<table class="table table-striped table-responsive">
+    <thead>
+        <tr>
+            <td>ID Matéria</td>
+            <td>Nome da Matéria</td>
+            <td>Módulo da Matéria</td>
+            <td>Curso</td>
+            <td>Professor Responsável Matéria</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var materias in Model)
+        {
+            <tr>
+                <td>@materias.IdMateria</td>
+                <td>@materias.NomeMateria</td>
+                <td>@materias.NomeModulo</td>
+                <td>@materias.NomeCurso</td>
+                <td>@materias.NomeProfessor</td>
+                <td>@Html.ActionLink("  ","Apagar", "Materia", new{ idModulo = @materias.IdMateria} ,new{ @class = "btn btn-danger btn-block fa fa-trash btn-sm" })</td>
+                <td>@Html.ActionLink(" ", "Editar", "Materia", new { idModulo = @materias.IdMateria }, new { @class = "btn btn-primary btn-block btn-sm fa fa-pencil" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Html.ActionLink(" ", "InserirMaterias", "Materia", null, new { @class = "btn btn-sm btn-primary fa fa-plus", @title = "" })

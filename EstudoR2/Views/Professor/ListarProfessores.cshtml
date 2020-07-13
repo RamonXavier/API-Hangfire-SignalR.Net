@@ -5,24 +5,30 @@
 
 <h2>Listar Professores</h2>
 
-    <table class="table">
-        <thead>
+<table id="table" class="table">
+    <thead>
         <tr>
-            <td>Nome</td>
             <td>Id</td>
-            <td></td>
+            <td>Nome</td>
+            <td>Ação/Excluir</td>
+            <td>Ação/Editar</td>
         </tr>
-        </thead>
-        <tbody>
+    </thead>
+    <tbody>
         @foreach (var prof in Model)
         {
             <tr>
-                <td>@prof.NomeProfessor</td>
                 <td>@prof.IdProfessor</td>
-                <td>@Html.ActionLink("Apagar", "ApagaProfessor", "Professor", new { idProfessor = prof.IdProfessor }, new {@class="btn-warning btn btn-block"})</td>
-                <td>@Html.ActionLink("Editar", "EditarProfessor", "Professor", new { idProfessor = prof.IdProfessor }, new { @class = "btn-primary btn btn-block" })</td>
+                <td>@prof.NomeProfessor</td>
+                <td>@Html.ActionLink("  ", "ApagaProfessor", "Professor", new { idProfessor = prof.IdProfessor }, new { @class = "btn-danger btn btn-block fa fa-trash btn-sm" })</td>
+                <td>@Html.ActionLink(" ", "EditarProfessor", "Professor", new { idProfessor = prof.IdProfessor }, new { @class = "btn-primary btn btn-block btn-sm fa fa-pencil" })</td>
             </tr>
         }
-        </tbody>
-    </table>
-<a href="@Url.Action("Index", "Professor")">Inserir novo Professor</a>
+    </tbody>
+</table>
+@Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-sm fa fa-plus" })
+
+@section scripts
+{
+
+}
