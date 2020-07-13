@@ -26,3 +26,18 @@ textarea {
 #insereNovoCurso {
     margin-top: 10px;
 }
+
+#textarea_t {
+    width: 100%;
+}
+
+.mensagens {
+    padding: 10px;
+}
+
+.mensagens_div {
+    background-color: gray;
+    overflow: auto;
+    max-height: 200px;
+    padding-bottom: 5%;
+}
