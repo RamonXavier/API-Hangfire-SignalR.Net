@@ -91,7 +91,7 @@ namespace EstudoR2.Controllers
                 var moduloEditar = db.Modulos.Where(x=>x.IdModulo == idModulo).Select(x => new ListaCursosViewModel()
                 {
                     IdModulo = x.IdModulo,
-                    nomeModulo = x.NomeModulo,
+                    NomeModulo = x.NomeModulo,
                     IdCursoSelecionado = x.IdCurso,
                     CursosDisponiveis = db.Cursos.Select(y=> new IdValorViewModel()
                     {

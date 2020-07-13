@@ -8,7 +8,8 @@ namespace EstudoR2.Models
     {
         [Key, Column("id_atividade")] 
         public int IdAtividade { get; set; }
-        public string descricao_atividade { get; set; }
+        [Column("descricao_atividade")]
+        public string DescricaoAtividade { get; set; }
 
         [ForeignKey("Turma"), Column("id_turma")]
         public int IdTurma { get; set; }

@@ -19,7 +19,7 @@ namespace EstudoR2.ViewModels
         public IList<IdValorViewModel> CursosDisponiveis{ get; set; }
 
         public int IdModulo { get; set; }
-        public string nomeModulo { get; set; }
+        public string NomeModulo { get; set; }
 
         public int IdCurso { get; set; }
 

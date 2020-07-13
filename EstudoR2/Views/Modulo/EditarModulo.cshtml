@@ -8,8 +8,8 @@
 @using (Html.BeginForm("Editar", "Modulo", null, FormMethod.Post))
 {
     <div class="form-group">
-        @Html.LabelFor(model => model.nomeModulo, "Nome Modulo")
-        @Html.TextBoxFor(model => model.nomeModulo, null, new { @class = "form-control" })
+        @Html.LabelFor(model => model.NomeModulo, "Nome Modulo")
+        @Html.TextBoxFor(model => model.NomeModulo, null, new { @class = "form-control" })
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.IdCursoSelecionado, "Curso do Módulo")

@@ -11,7 +11,7 @@
         @Html.TextBox("nomeMateria", null, null, new { @class = "form-control" })
     </div>
     <div class="form-group col-md-4">
-        @Html.Label("nomeModulo", "Módulo da Matéria")
+        @Html.Label("NomeModulo", "Módulo da Matéria")
         @Html.ListBoxFor(model => model.ModuloDisponivel,
              new SelectList(Model.ModuloDisponivel, "Id", "Valor"), new { @class = "form-control aaa", @multiple = true })
     </div>

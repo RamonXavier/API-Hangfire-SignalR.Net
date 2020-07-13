@@ -3,13 +3,13 @@
     ViewBag.Title = "InserirCurso";
 }
 
-<h2>InserirCurso</h2>
+<h2>Inserir Curso</h2>
 
-@using (Html.BeginForm("InserirCursoAction", "Curso", FormMethod.Post))
+@using (Html.BeginForm("InserirTelaPrincipal", "Curso", FormMethod.Post))
 {
     <div class="form-group">
-        @Html.Label("NomeCurso", "Nome do Curso")
-        @Html.TextBox("NomeCurso", null, new { @class = "form-control" })
+        @Html.Label("nomeCurso", "Nome do Curso")
+        @Html.TextBox("nomeCurso", null, new { @class = "form-control" })
     </div>
     <button type="submit" class="btn-primary btn-sm btn btn-success fa fa-floppy-o"> Salvar Curso</button>
     <button type="reset" class="btn-primary btn-sm btn btn-warning fa fa-trash"> Limpar Dados</button>

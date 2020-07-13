@@ -27,14 +27,11 @@ namespace EstudoR2.Controllers
         }
 
         [HttpPost]
-        public ActionResult InserirCursoAction(string NomeCurso)
+        public ActionResult InserirTelaPrincipal(Curso curso)
         {
-            Curso c1 = new Curso();
-            c1.NomeCurso = NomeCurso;
-
             using (var db = new R2Context())
             {
-                db.Cursos.Add(c1);
+                db.Cursos.Add(curso);
                 db.SaveChanges();
                 return RedirectToAction("ListarCursos");
             }
@@ -47,47 +44,45 @@ namespace EstudoR2.Controllers
             {
                 db.Cursos.Add(curso);
                 db.SaveChanges();
-                var itemList = db.Cursos.Select(item => new IdValorViewModel
+                var novoCursoDropDown = db.Cursos.Select(item => new IdValorViewModel
                 {
                     Id = item.IdCurso,
                     Valor = item.NomeCurso
                 }).ToList();
-                return Json(new SelectList(itemList, "id", "valor"));
+                return Json(new SelectList(novoCursoDropDown, "id", "valor"));
             }
 
         }
 
         [HttpGet]
-        public ActionResult ApagaCurso(int idCurso)
+        public ActionResult Apagar(Curso curso)
         {
-            Curso c1 = new Curso();
-            c1.IdCurso = idCurso;
             using (var db = new R2Context())
             {
-                db.Cursos.Attach(c1);
-                db.Cursos.Remove(c1);
+                db.Cursos.Attach(curso);
+                db.Cursos.Remove(curso);
                 db.SaveChanges();
                 return RedirectToAction("ListarCursos");
             }
         }
 
         [HttpGet]
-        public ActionResult EditarCurso(int idCurso)
+        public ActionResult EditarCurso(Curso curso)
         {
             using (var db = new R2Context())
             {
-                var edicaoCurso = db.Cursos.Where(x => x.IdCurso == idCurso).First();
+                var edicaoCurso = db.Cursos.Where(x => x.IdCurso == curso.IdCurso).First();
                 return View(edicaoCurso);
             }
         }
 
         [HttpPost]
-        public ActionResult Editar(int idCurso, string nomeCurso)
+        public ActionResult Editar(Curso curso)
         {
             using (var db = new R2Context())
             {
-                var edicaoCurso = db.Cursos.Where(x => x.IdCurso == idCurso).First();
-                edicaoCurso.NomeCurso = nomeCurso;
+                var edicaoCurso = db.Cursos.Where(x => x.IdCurso == curso.IdCurso).First();
+                edicaoCurso.NomeCurso = curso.NomeCurso;
                 db.SaveChanges();
                 return RedirectToAction("ListarCursos");
             }

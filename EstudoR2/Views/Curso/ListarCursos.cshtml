@@ -21,7 +21,7 @@
             <tr>
                 <td>@cursos.IdCurso</td>
                 <td>@cursos.NomeCurso</td>
-                <td>@Html.ActionLink("  ", "ApagaCurso", new { idCurso = cursos.IdCurso }, new { @class = "btn btn-danger btn-block fa fa-trash btn-sm" })</td>
+                <td>@Html.ActionLink("  ", "Apagar", new { idCurso = cursos.IdCurso }, new { @class = "btn btn-danger btn-block fa fa-trash btn-sm" })</td>
                 <td>@Html.ActionLink(" ", "EditarCurso", new { idCurso = cursos.IdCurso }, new { @class = "btn btn-primary btn-block btn-sm fa fa-pencil" })</td>
             </tr>
         }
