@@ -57,7 +57,6 @@ namespace EstudoR2.Controllers
         [HttpPost]
         public string Inserir(Modulo modulo)
         {
-           
             using (var db = new R2Context())
             {
                 db.Modulos.Add(modulo);
@@ -68,11 +67,8 @@ namespace EstudoR2.Controllers
         }
 
         [HttpGet]
-        public ActionResult ApagarModulo(int idModulo)
+        public ActionResult Apagar(Modulo modulo)
         {
-            Modulo modulo = new Modulo();
-            modulo.IdModulo = idModulo;
-
             using (var db = new R2Context())
             {
                 db.Modulos.Attach(modulo);
@@ -83,12 +79,12 @@ namespace EstudoR2.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditarModulo(int idModulo)
+        public ActionResult EditarModulo(Modulo modulo)
         {
 
             using (var db = new R2Context())
             {
-                var moduloEditar = db.Modulos.Where(x=>x.IdModulo == idModulo).Select(x => new ListaCursosViewModel()
+                var moduloParaEditar = db.Modulos.Where(x=>x.IdModulo == modulo.IdModulo).Select(x => new ListaCursosViewModel()
                 {
                     IdModulo = x.IdModulo,
                     NomeModulo = x.NomeModulo,
@@ -99,19 +95,18 @@ namespace EstudoR2.Controllers
                         Valor = y.NomeCurso
                     }).ToList()
                 }).FirstOrDefault();
-                return View(moduloEditar);
+                return View(moduloParaEditar);
             }
-            //return RedirectToAction("ListarModulos");
         }
 
         [HttpPost]
-        public ActionResult Editar(int idModulo, int IdCursoSelecionado, string nomeModulo)
+        public ActionResult Editar(Modulo modulo)
         {
             using (var db = new R2Context())
             {
-                var moduloEditar = db.Modulos.Where(x=>x.IdModulo == idModulo).First();
-                moduloEditar.IdCurso = IdCursoSelecionado;
-                moduloEditar.NomeModulo = nomeModulo;
+                var moduloEditado = db.Modulos.Where(x=>x.IdModulo == modulo.IdModulo).First();
+                moduloEditado.IdCurso = modulo.IdCurso;
+                moduloEditado.NomeModulo = modulo.NomeModulo;
                 db.SaveChanges();
                 return RedirectToAction("ListarModulos");
             }

@@ -13,7 +13,7 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.IdCursoSelecionado, "Curso do Módulo")
-        @Html.DropDownListFor(x=>x.IdCursoSelecionado,
+        @Html.DropDownListFor(x=>x.IdCurso,
             new SelectList(Model.CursosDisponiveis, "Id", "Valor", Model.IdCursoSelecionado), new{ @class = "form-control" })
     </div>
     <input type="hidden" value=@Model.IdModulo name="idModulo" id="idModulo"/>

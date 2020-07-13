@@ -20,7 +20,7 @@
             <tr>
                 <td>@prof.IdProfessor</td>
                 <td>@prof.NomeProfessor</td>
-                <td>@Html.ActionLink("  ", "ApagaProfessor", "Professor", new { idProfessor = prof.IdProfessor }, new { @class = "btn-danger btn btn-block fa fa-trash btn-sm" })</td>
+                <td>@Html.ActionLink("  ", "Apagar", "Professor", new { idProfessor = prof.IdProfessor }, new { @class = "btn-danger btn btn-block fa fa-trash btn-sm" })</td>
                 <td>@Html.ActionLink(" ", "EditarProfessor", "Professor", new { idProfessor = prof.IdProfessor }, new { @class = "btn-primary btn btn-block btn-sm fa fa-pencil" })</td>
             </tr>
         }

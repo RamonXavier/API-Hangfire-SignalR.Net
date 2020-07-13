@@ -18,14 +18,11 @@ namespace EstudoR2.Controllers
         }
 
         [HttpPost]
-        public ActionResult SalvaProfessor(string nomeProfessor)
+        public ActionResult Salvar(Professor professor)
         {
-            Professor p1 = new Professor();
-            p1.NomeProfessor = nomeProfessor;
-
             using (var db = new R2Context())
             {
-                db.Professores.Add(p1);
+                db.Professores.Add(professor);
                 db.SaveChanges();
             }
             return View("InsereProfessor");
@@ -41,38 +38,34 @@ namespace EstudoR2.Controllers
         }
 
         [HttpGet]
-        public ActionResult ApagaProfessor(int idProfessor)
+        public ActionResult Apagar(Professor professor)
         {
-            Professor p1 = new Professor();
-            p1.IdProfessor = idProfessor;
             using (var db = new R2Context())
             {
-                db.Professores.Attach(p1);
-                db.Professores.Remove(p1);
+                db.Professores.Attach(professor);
+                db.Professores.Remove(professor);
                 db.SaveChanges();
                 return RedirectToAction("ListarProfessores");
             }
         }
 
         [HttpGet]
-        public ActionResult EditarProfessor(int idprofessor)
+        public ActionResult EditarProfessor(Professor professor)
         {
-            Professor p = new Professor();
-            p.IdProfessor = idprofessor;
             using (var db = new R2Context())
             {
-             var professorEditar = db.Professores.Where(x=>x.IdProfessor == idprofessor).First();
+             var professorEditar = db.Professores.Where(x=>x.IdProfessor == professor.IdProfessor).First();
              return View(professorEditar);
             }
         }
 
         [HttpPost]
-        public ActionResult Editar(string NomeProfessor, int IdProfessor)
+        public ActionResult Editar(Professor professor)
         {
             using (var db = new R2Context())
             {
-                var professorEditar = db.Professores.Where(x => x.IdProfessor == IdProfessor).First();
-                professorEditar.NomeProfessor = NomeProfessor;
+                var professorEditar = db.Professores.Where(x => x.IdProfessor == professor.IdProfessor).First();
+                professorEditar.NomeProfessor = professor.NomeProfessor;
                 db.SaveChanges();
                 return RedirectToAction("ListarProfessores");
             }

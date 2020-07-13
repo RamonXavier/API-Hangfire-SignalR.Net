@@ -24,7 +24,7 @@
                 <td>@modulos.IdModulo</td>
                 <td>@modulos.NomeModulo</td>
                 <td>@modulos.NomeCurso</td>
-                <td>@Html.ActionLink("  ", "ApagarModulo", "Modulo", new { idModulo = @modulos.IdModulo }, new { @class = "btn btn-danger btn-block fa fa-trash btn-sm" })</td>
+                <td>@Html.ActionLink("  ", "Apagar", "Modulo", new { idModulo = @modulos.IdModulo }, new { @class = "btn btn-danger btn-block fa fa-trash btn-sm" })</td>
                 <td>@Html.ActionLink(" ", "EditarModulo", "Modulo", new { idModulo = @modulos.IdModulo }, new { @class = "btn btn-primary btn-block btn-sm fa fa-pencil" })</td>
             </tr>
         }
