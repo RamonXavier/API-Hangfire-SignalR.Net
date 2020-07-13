@@ -72,10 +72,10 @@
         });
 
         $("#envia").click(function (e) {
-            var url = "/Endereco/testaRegex";
+            var url = "/Endereco/TestarRegex";
             var valores =
             {
-                cep: $("#cpf").val()
+                valor: $("#cpf").val()
             }
             console.log(valores);
             $.ajax({
@@ -90,7 +90,7 @@
         });
 
         $("#enviaApi").click(function (e) {
-            var url = "/Endereco/buscaEndereco";
+            var url = "/Endereco/BuscaEndereco";
             var valores = { cep: $("#cep").val() }
             $.ajax({
                 type: "GET",
@@ -109,7 +109,7 @@
         });
 
         $("#salvaPost").click(function (e) {
-            var url = "/Endereco/postHttp";
+            var url = "/Endereco/TestaPostHttp";
             var valores = { cep: $("#cep").val() }
             $.ajax({
                 type: "GET",
