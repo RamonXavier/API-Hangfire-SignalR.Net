@@ -17,7 +17,9 @@ namespace EstudoR2
                         "~/Scripts/bootstrap-multiselect.js", 
                         "~/Scripts/chosen.jquery.js",
                         "~/Scripts/jquery.toast.js",
-                        "~/Scripts/jquery.mask.js"));
+                        "~/Scripts/jquery.mask.js",
+                        "~/Scripts/jquery.signalR-{version}.js",
+                        "~/signalr/Hubs"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

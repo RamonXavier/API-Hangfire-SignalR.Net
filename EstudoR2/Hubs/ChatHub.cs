@@ -1,1 +1,17 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Hubs;
+
+namespace EstudoR2.Hubs
+{
+    public class ChatHub : Hub
+    {
+        public void EnviarMensagem(string nome, string mensagem)
+        {
+            Clients.All.publicarMensagem(nome, mensagem);
+        }
+    }
+}
