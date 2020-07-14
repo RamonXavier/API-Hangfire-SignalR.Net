@@ -1,10 +1,10 @@
 ﻿using System.Web.Http;
-using CaveWeb;
+using EstudoR2;
 using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartup(typeof(Startup))]
-namespace CaveWeb
+namespace EstudoR2
 {
     public partial class Startup
     {

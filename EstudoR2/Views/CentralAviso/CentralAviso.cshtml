@@ -9,7 +9,7 @@
     <div class="panel-body">
         <div class="panel-group">
             <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png" style="width: 7%; height: 7%; border-radius: 50%" />
-            <span id="usuario">Ramon Xavier: </span>
+            <input type="text" id="usuario" placeholder="Entre com um usuário" />&nbsp;<button id="defineUSer" class="btn">Entrar...</button>
         </div>
         <div class="col-md-12">
             <textarea id="textarea_t" rows="6" class="form-control" style="max-width: 100%;"></textarea>
@@ -19,64 +19,48 @@
 </div>
 
 <div class="mensagens_div">
-    <div class="panel-group mensagens">
-        <div class="panel-group">
-            <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png" style="width: 7%; height: 7%; border-radius: 50%" />
-            <span>Ramon Xavier: </span>
-        </div>
-        <div class="col-md-12">
-            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-            Placerat suscipit, orci nisl iaculis eros, a tincidunt nisi odio eget lorem nulla condimentum tempor mattis ut vitae feugiat augue cras ut metus a risus iaculis scelerisque eu ac ante.
-            Fusce non varius purus aenean nec magna.
-        </div>
-    </div>
-    <div class="panel-group mensagens">
-        <div class="panel-group">
-            <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png" style="width: 7%; height: 7%; border-radius: 50%" />
-            <span>Ramon Xavier: </span>
-        </div>
-        <div class="col-md-12">
-            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-            Placerat suscipit, orci nisl iaculis eros, a tincidunt nisi odio eget lorem nulla condimentum tempor mattis ut vitae feugiat augue cras ut metus a risus iaculis scelerisque eu ac ante.
-            Fusce non varius purus aenean nec magna.
-        </div>
 
-    </div>
-    <div class="panel-group mensagens">
-        <div class="panel-group">
-            <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png" style="width: 7%; height: 7%; border-radius: 50%" />
-            <span>Ramon Xavier: </span>
-        </div>
-        <div class="col-md-12">
-            Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, aliquam sit amet justo nunc tempor, metus vel.
-            Placerat suscipit, orci nisl iaculis eros, a tincidunt nisi odio eget lorem nulla condimentum tempor mattis ut vitae feugiat augue cras ut metus a risus iaculis scelerisque eu ac ante.
-            Fusce non varius purus aenean nec magna.
-        </div>
-    </div>
 </div>
 
 @section scripts
 {
     <script>
+        $(document).ready(function () {
+            $("#enviar").hide();
+        })
+
+        $("#defineUSer").click(function () {
+            $("#usuario").attr("disabled", true);
+            $("#enviar").show();
+            $(this).hide();
+        })
+
         $(function () {
             var chat = $.connection.chatHub;
-            console.log(chat);
-            chat.clients.publicarMensagem = function (nome, mensagem) {
-                var containerNome = $('#usuario').text(nome).html();
+
+            chat.client.publicarMensagem = function (nome, mensagem) {
+                //var containerNome = $('#usuario').text(nome).val();
                 var containerMensagem = $('#textarea_t').text(mensagem).html();
-            $("#mensagens_div").append(
-                '<li><strong>'
-                + containerNome +
-                '</strong>: '
-                + containerMensagem + '</li>');
+                $(".mensagens_div").append(
+                    "<div class='panel-group mensagens'>" +
+                    "<div class='panel-group'>" +
+                    "<img src='https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png' style='width: 7%; height: 7%; border-radius: 50%' />" +
+                    "<span>" +
+                    nome +
+                    ": </span>" +
+                    "</div>" +
+                    "<div class='col-md-12'>" +
+                    containerMensagem +
+                    "</div>" +
+                    "</div>");
             };
 
             $.connection.hub.start().done(function () {
                 $("#enviar").click(function () {
-                    var nome = $("#nome").val();
-                    var mensagem = $("#mensagem").val();
+                    var nome = $("#usuario").val();
+                    var mensagem = $("#textarea_t").val();
                     chat.server.enviarMensagem(nome, mensagem);
-                    $("#mensagem").val('');
+                    $("#textarea_t").val('');
                 });
             });
         });
