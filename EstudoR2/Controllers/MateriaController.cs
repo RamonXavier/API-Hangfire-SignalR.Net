@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using EstudoR2.Context;
 using EstudoR2.Models;
 using EstudoR2.ViewModels;
+using Hangfire;
 
 namespace EstudoR2.Controllers
 {
@@ -34,6 +35,7 @@ namespace EstudoR2.Controllers
             //    }).ToList();
             //    return View(viewModel);
             //}
+
             return RedirectToAction("ListarCursos", "Curso");
         }
 

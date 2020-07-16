@@ -38,6 +38,6 @@ textarea {
 .mensagens_div {
     background-color: #DCDCDC;
     overflow: auto;
-    max-height: 200px;
+    max-height: 700px;
     padding-bottom: 5%;
 }

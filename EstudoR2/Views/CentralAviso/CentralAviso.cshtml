@@ -38,13 +38,13 @@
         $(function () {
             var chat = $.connection.chatHub;
 
-            chat.client.publicarMensagem = function (nome, mensagem) {
+            chat.client.publicarMensagem = function (nome, mensagem, imagem) {
                 //var containerNome = $('#usuario').text(nome).val();
                 var containerMensagem = $('#textarea_t').text(mensagem).html();
                 $(".mensagens_div").append(
                     "<div class='panel-group mensagens'>" +
                     "<div class='panel-group'>" +
-                    "<img src='https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png' style='width: 7%; height: 7%; border-radius: 50%' />" +
+                    "<img src='"+imagem+"' style='width: 7%; height: 7%; border-radius: 50%' />" +
                     "<span>" +
                     nome +
                     ": </span>" +
@@ -59,7 +59,8 @@
                 $("#enviar").click(function () {
                     var nome = $("#usuario").val();
                     var mensagem = $("#textarea_t").val();
-                    chat.server.enviarMensagem(nome, mensagem);
+                    var imagem = "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
+                    chat.server.enviarMensagem(nome, mensagem,imagem);
                     $("#textarea_t").val('');
                 });
             });
