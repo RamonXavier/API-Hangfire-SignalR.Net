@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -7,6 +8,8 @@ using AutoMapper;
 using EstudoR2.Context;
 using EstudoR2.Models;
 using EstudoR2.ViewModels;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace EstudoR2.Controllers
 {
@@ -109,6 +112,55 @@ namespace EstudoR2.Controllers
                 moduloEditado.NomeModulo = modulo.NomeModulo;
                 db.SaveChanges();
                 return RedirectToAction("ListarModulos");
+            }
+        }
+
+        public void PdfModulo(string s)
+        {
+            using (var db = new R2Context())
+            {
+            var listaModulos = db.Modulos.ToArray();                   
+
+            var pdf = new Document(PageSize.A4, 10, 10, 10, 10);
+            var caminhoPdf = AppDomain.CurrentDomain.BaseDirectory;
+            PdfWriter.GetInstance(pdf, new FileStream(AppDomain.CurrentDomain.BaseDirectory + @"\Pdf\pdfWeb-Modulos.pdf", FileMode.Create));
+            pdf.Open();
+            pdf.Add(new Paragraph("aaaaa"));
+
+            PdfPTable tabela = new PdfPTable(3);
+
+            PdfPCell cell = new PdfPCell(new Phrase("Módulos Cadastrados"));
+
+            cell.Colspan = 3;
+
+            cell.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
+
+            tabela.AddCell(cell);
+
+            PdfPCell headerId = new PdfPCell(new Phrase("Id Módulo"));
+            PdfPCell headerNomeM = new PdfPCell(new Phrase("Nome Módulo"));
+            PdfPCell headerNomeC = new PdfPCell(new Phrase("Curso do Módulo"));
+
+            tabela.AddCell(headerId);
+            tabela.AddCell(headerNomeM);
+            tabela.AddCell(headerNomeC);
+
+            foreach (var modulos in listaModulos)
+            {
+                tabela.AddCell($"{modulos.IdModulo}");
+
+                tabela.AddCell($"{modulos.NomeModulo}");
+
+                tabela.AddCell($"{modulos.Curso.NomeCurso}");
+            }
+
+
+
+            pdf.Add(tabela);
+
+            pdf.Close();
+            Response.Redirect($"/Pdf/pdfWeb-Modulos.pdf");
+
             }
         }
     }
